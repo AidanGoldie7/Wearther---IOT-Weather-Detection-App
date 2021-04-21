@@ -10,8 +10,8 @@ import android.os.Handler;
 public class MainActivity extends AppCompatActivity {
 
     //STEP 1 - create a timer for how long the splashscreen will show
-    //3000 = 3 SECONDS
-    private static int Splash_Time_Out = 3000;
+    //5000 = 5 SECONDS
+    private static int Splash_Time_Out = 5000;
 
 
     //This section doesn't change
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
 
-            //starts the 3 second count
+            //starts the 5 second count
         }, Splash_Time_Out);
     }
 }

@@ -4,7 +4,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        //needed to input gif in splash screen
+        //GIF 1 - needed to input gif in splash screen
         mavenCentral()
     }
     dependencies {
@@ -19,7 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        //needed to input gif in slash screen
+        //GIF 1 - needed to input gif in slash screen
         mavenCentral()
     }
 }
