@@ -1,53 +1,111 @@
 package com.example.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import io.particle.android.sdk.cloud.ParticleCloudSDK;
-import io.particle.android.sdk.cloud.ParticleDevice;
-import io.particle.android.sdk.utils.Toaster;
-import io.particle.android.sdk.cloud.exceptions.ParticleCloudException;
+
 
 
 public class MainScreen extends AppCompatActivity {
+    TextView temp, humidity;
+    Button getData;
+    DatabaseReference ref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        temp = (TextView) findViewById(R.id.tempview);
+        //humidity = (TextView) findViewById(R.id.txtHum);
+        getData = (Button) findViewById(R.id.btnGetData);
 
 
-        Button button1 = (Button)findViewById(R.id.button);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
+        getData.setOnClickListener(v -> {
+            ref = FirebaseDatabase.getInstance().getReference().child("FirebaseData").child("data").child("MZmoQyV65qhE2KF1xex");
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    String Temperature = snapshot.child("FireTemperature").getValue().toString();
+                    temp.setText(Temperature);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        });
+    }
+}
+
+
+
+
+
+       /*
+        getData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ref = FirebaseDatabase.getInstance().getReference().child("FirebaseData").child("data").child("MZmoQyV65qhE2KF1xex");
+                ref.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        String FireTemperature = dataSnapshot.child("FireTemperature").getValue().toString();
+                        temp.setText(FireTemperature);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+        });
+    }
+}
+*/
+
+
+
+
+
 
                 //code working on
-                EditText textUser = (EditText) findViewById(R.id.txtUsername);
-                EditText textPassword = (EditText) findViewById(R.id.txtPassword);
+              /*  EditText textUser = findViewById(R.id.txtUsername);
+                EditText textPassword = findViewById(R.id.txtPassword);
 
                 try {
+                    //ParticleCloudSDK.getCloud().logIn(textUser.getText().toString(), textPassword.getText().toString());
                     ParticleCloudSDK.getCloud().logIn("aidangoldie7@gmail.com", "Password7");
-                    Activity someActivity = null;
-                    Toaster.s(someActivity, "Logged in!");
+                    //Activity MainScreen;
+                    Toast.makeText(MainScreen.this, "logged in!", Toast.LENGTH_LONG).show();
 
-                    ParticleCloudSDK.getCloud().setAccessToken("9bb912533940e7c808b191c28cd6aaaf8d12986c");
+
+                    Intent HomeIntent = new Intent(MainScreen.this, HomeScreen.class);
+                    startActivity(HomeIntent);
+                    finish();
+
 
                 } catch (ParticleCloudException e) {
                    // e.printStackTrace();
-                }
+                    Toast.makeText(MainScreen.this, "credentials wrong", Toast.LENGTH_LONG).show();
+                }*/
 
                 /*
                 try {
@@ -66,10 +124,7 @@ public class MainScreen extends AppCompatActivity {
             //Toaster.s(someActivity, "Logged in!");
                 //End of code working on
 
-            }
-        });
-    }
-}
+
 
 /*
     Button buttonB = (Button)findViewById(R.id.button);
@@ -96,4 +151,3 @@ public class MainScreen extends AppCompatActivity {
     }
 }
 */
-

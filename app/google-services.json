@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "252762720626",
+    "firebase_url": "https://iot-final-project-f1b40-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "iot-final-project-f1b40",
+    "storage_bucket": "iot-final-project-f1b40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252762720626:android:80baae8678debec6bcb5eb",
+        "android_client_info": {
+          "package_name": "com.example.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252762720626-7eo5eqrajuvv7sllfd8f69nbnece1oek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxMTaNNNqnx_YTXgAGMxanQjD-d49JQWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252762720626-7eo5eqrajuvv7sllfd8f69nbnece1oek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

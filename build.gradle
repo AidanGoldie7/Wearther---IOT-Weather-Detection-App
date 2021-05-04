@@ -4,16 +4,24 @@ buildscript {
     repositories {
         google()
         jcenter()
+
         //GIF 1 - needed to input gif in splash screen
         mavenCentral()
+
+
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
-        
+        classpath 'com.android.tools.build:gradle:3.5.4'
+
+        //connect app to firebase
+        classpath 'com.google.gms:google-services:4.3.5'
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
 
 allprojects {
     repositories {
@@ -23,6 +31,8 @@ allprojects {
         mavenCentral()
     }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
