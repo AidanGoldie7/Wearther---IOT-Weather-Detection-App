@@ -3,7 +3,7 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        //jcenter()
 
         //GIF 1 - needed to input gif in splash screen
         mavenCentral()
@@ -12,7 +12,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath 'com.android.tools.build:gradle:4.0.2'
 
         //connect app to firebase
         classpath 'com.google.gms:google-services:4.3.5'
@@ -26,7 +26,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        //jcenter()
         //GIF 1 - needed to input gif in slash screen
         mavenCentral()
     }

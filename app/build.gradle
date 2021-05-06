@@ -6,18 +6,18 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
 
-    //to solve the Invke customs are only supported starting with Android O
+    //to solve the Invoke customs are only supported starting with Android O
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
     defaultConfig {
         applicationId "com.example.finalproject"
-        minSdkVersion 17
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -37,6 +37,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'org.jetbrains:annotations:15.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -44,11 +45,7 @@ dependencies {
     //GIF 2 - used to allow for gifs
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
-    //PARTICLE CLOUD SDK 1 - used for Particle Cloud SDK
-    implementation 'io.particle:cloudsdk:1.0.1'
 
-    //Particle Device Setup 1
-    implementation 'io.particle:devicesetup:0.7.3'
 
 
     //Firebase Connection
@@ -60,9 +57,7 @@ dependencies {
 
     // Declare the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-database'
-
-
+    implementation 'com.google.firebase:firebase-database:19.7.0'
     //to fix multidex error
     implementation 'com.android.support:multidex:1.0.3'
 }

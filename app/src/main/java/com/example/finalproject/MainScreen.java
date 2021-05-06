@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,14 +12,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-
+import java.util.Objects;
 
 
 public class MainScreen extends AppCompatActivity {
+    //Initialise variables
     TextView temp, humidity;
-    Button getData;
+    Button getDataButton;
     DatabaseReference ref;
 
 
@@ -27,18 +30,57 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        //set variables to txtViews and button
         temp = (TextView) findViewById(R.id.tempview);
-        //humidity = (TextView) findViewById(R.id.txtHum);
-        getData = (Button) findViewById(R.id.btnGetData);
+        humidity = (TextView) findViewById(R.id.txtHum);
+        getDataButton = (Button) findViewById(R.id.btnGetData);
 
 
+        //when button clicked
+        getDataButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                //refer to firebase database
+                ref = (DatabaseReference) FirebaseDatabase.getInstance().getReference();
+                //navigate to correct node, order by key and limit to the last published key
+                Query lastQuery = ref.child("FirebaseData").child("data").orderByKey().limitToLast(1);
+
+
+                lastQuery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        //filters through list
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            //gets value of item titled FireTemperature
+                            String Temperature = (String) ds.child("FireTemperature").getValue();
+                            //gets value of item titles FireHUmidity
+                            String Humidity = (String) ds.child("FireHumidity").getValue();
+
+                            //sends these values to textViews which have been assigned to the above variables
+                            temp.setText("Temperature : " + Temperature);
+                            humidity.setText("Humidity : " + Humidity);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
+        /*
         getData.setOnClickListener(v -> {
             ref = FirebaseDatabase.getInstance().getReference().child("FirebaseData").child("data").child("MZmoQyV65qhE2KF1xex");
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    String Temperature = snapshot.child("FireTemperature").getValue().toString();
+                    String Temperature = snapshot.child("tempp").getValue().toString();
                     temp.setText(Temperature);
                 }
 
@@ -48,6 +90,9 @@ public class MainScreen extends AppCompatActivity {
                 }
             });
         });
+
+        */
+
     }
 }
 
@@ -129,7 +174,7 @@ public class MainScreen extends AppCompatActivity {
 /*
     Button buttonB = (Button)findViewById(R.id.button);
         buttonB.setOnClickListener(new View.OnClickListener(){
-        //annonymous inner method called when buttonB clicked....
+        //anonymous inner method called when buttonB clicked....
         public void onClick(View v) {
 
             List<ParticleDevice> devices = ParticleCloudSDK.getCloud().getDevices();
