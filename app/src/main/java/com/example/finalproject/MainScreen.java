@@ -42,7 +42,7 @@ public class MainScreen extends AppCompatActivity {
         upperBodyOuter = (TextView) findViewById(R.id.txtUpperOuterLayer);
 
         lowerBodyBase = (TextView) findViewById(R.id.txtLowerBaseLayer);
-        lowerBodyUnder = (TextView) findViewById(R.id.txtUpperUnderLayer);
+        lowerBodyUnder = (TextView) findViewById(R.id.txtLowerUnderLayer);
 
         waterproof = (TextView) findViewById(R.id.WeatherUpper);
         airResult = (TextView) findViewById(R.id.txtAir);
@@ -100,7 +100,7 @@ public class MainScreen extends AppCompatActivity {
                             //Validation for Temperature
                             if (TempParse<=0)
                             {
-                                upperBodyUnder.setText("Under Layer : Thermal Second Skin");
+                                upperBodyUnder.setText("Under Layer : Second Skin");
                                 upperBodyBase.setText("Base Layer : Thermal T-shirt");
                                 upperBodyOuter.setText("Outer Layer : Insulated Jacket");
 
